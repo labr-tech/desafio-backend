@@ -1,4 +1,3 @@
-from django.db import models
 from desafio.filterset import SearchFilterSet
 
 from .models import State
