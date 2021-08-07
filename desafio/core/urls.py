@@ -6,7 +6,7 @@ from .views import StateViewSet
 app_name = 'core'
 
 router = DefaultRouter()
-router.register(r'list', StateViewSet, basename='list')
+router.register(r'state', StateViewSet, basename='state')
 
 urlpatterns = [
     path('', include(router.urls)),
