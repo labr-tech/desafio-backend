@@ -35,3 +35,19 @@ class CitySerializer(serializers.ModelSerializer):
         copy_validated_data['state'] = state
 
         return super().create(copy_validated_data)
+
+    @atomic
+    def update(self, instance, validated_data):
+        state_code = validated_data.pop('state')
+        copy_validated_data = validated_data.copy()
+
+        try:
+            state = State.objects.get(code=state_code)
+        except ObjectDoesNotExist:
+            raise serializers.ValidationError(
+                _('Estado não localizado ' + state_code)
+            )
+
+        copy_validated_data['state'] = state
+
+        return super().update(instance, copy_validated_data)
