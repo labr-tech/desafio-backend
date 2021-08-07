@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group, User
 from rest_framework.test import APIClient
 from django.urls import reverse
 
-from .models import State
+from .models import State, City
 
 
 def setClient():
@@ -66,4 +66,50 @@ class StateTest(TestCase):
     def test_delete_state(self):
         response = self.client.delete(
             '/api/v1/core/state/' + str(self.state.id) + '/')
+        self.assertEqual(response.status_code, 204)
+
+
+class CityTest(TestCase):
+    def setUp(self):
+        self.client = setClient()
+        self.state = State.objects.create(
+            code='PE',
+            name='Pernambuco'
+        )
+        self.city = City.objects.create(
+            state=self.state,
+            name='Recife',
+            slug='recife'
+        )
+
+    def test_create_city(self):
+        response = self.client.post(
+            '/api/v1/core/city/',
+            data={
+                'state': self.state,
+                'name': 'Recife',
+                'slug': 'recife'
+            }
+        )
+        self.assertEqual(response.status_code, 201)
+
+    def test_list_city(self):
+        response = self.client.get('/api/v1/core/city/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_change_city(self):
+        response = self.client.put(
+            '/api/v1/core/city/' + str(self.city.id) + '/',
+            data={
+                'state': 'PE',
+                'name': 'Olinda',
+                'slug': 'olinda'
+            }
+        )
+        breakpoint
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete_city(self):
+        response = self.client.delete(
+            '/api/v1/core/city/' + str(self.city.id) + '/')
         self.assertEqual(response.status_code, 204)
