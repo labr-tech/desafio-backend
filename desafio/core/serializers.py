@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.db.transaction import atomic
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
+from django.utils.text import slugify
 
 from .models import State, City
 
@@ -33,6 +34,7 @@ class CitySerializer(serializers.ModelSerializer):
             )
 
         copy_validated_data['state'] = state
+        copy_validated_data['slug'] = slugify(validated_data['name'])
 
         return super().create(copy_validated_data)
 
@@ -49,5 +51,6 @@ class CitySerializer(serializers.ModelSerializer):
             )
 
         copy_validated_data['state'] = state
+        copy_validated_data['slug'] = slugify(validated_data['name'])
 
         return super().update(instance, copy_validated_data)
