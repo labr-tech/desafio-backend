@@ -1,4 +1,4 @@
-from rest_framework import mixins, viewsets
+from rest_framework import viewsets
 from django_filters import rest_framework as filters
 
 from .models import State, City
@@ -6,7 +6,7 @@ from .serializers import CitySerializer, StateSerializer
 from desafio.core.filterset import CityFilter, StateFilter
 
 
-class StateViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
+class StateViewSet(viewsets.ModelViewSet):
     queryset = State.objects.all()
     serializer_class = StateSerializer
     filter_backends = (filters.DjangoFilterBackend,)
