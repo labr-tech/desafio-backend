@@ -3,7 +3,7 @@ from django_filters import rest_framework as filters
 
 from .models import State, City
 from .serializers import CitySerializer, StateSerializer
-from desafio.core.filterset import StateFilter
+from desafio.core.filterset import CityFilter, StateFilter
 
 
 class StateViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
@@ -17,4 +17,4 @@ class CityViewSet(viewsets.ModelViewSet):
     queryset = City.objects.all()
     serializer_class = CitySerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    # filter_class = ''
+    filter_class = CityFilter
