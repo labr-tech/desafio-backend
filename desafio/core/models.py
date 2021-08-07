@@ -12,6 +12,12 @@ class State(CommonModel):
         verbose_name = _('Estado')
         verbose_name_plural = _('Estados')
         ordering = ('code',)
+        constraints = [
+            models.UniqueConstraint(
+                fields=['code'],
+                name='unique_state'
+            )
+        ]
 
     def __str__(self) -> str:
         return self.code
@@ -28,6 +34,12 @@ class City(CommonModel):
         verbose_name = _('Cidade')
         verbose_name_plural = _('Cidades')
         ordering = ('name',)
+        constraints = [
+            models.UniqueConstraint(
+                fields=['state', 'name'],
+                name='unique_city'
+            )
+        ]
 
     def __str__(self) -> str:
         return self.name
