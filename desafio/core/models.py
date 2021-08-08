@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
@@ -28,9 +29,13 @@ class State(CommonModel):
     def __str__(self) -> str:
         return self.code
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.name = self.get_code_display()
-        return super().save()
+        try:
+            self.full_clean()
+            return super().save(*args, **kwargs)
+        except ValidationError as e:
+            raise e
 
 
 class City(CommonModel):
@@ -54,6 +59,10 @@ class City(CommonModel):
     def __str__(self) -> str:
         return self.name
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        return super().save()
+        try:
+            self.full_clean()
+            return super().save(*args, **kwargs)
+        except ValidationError as e:
+            raise e
