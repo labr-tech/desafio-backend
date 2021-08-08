@@ -16,4 +16,12 @@ class StateModelAdmin(admin.ModelAdmin):
     list_filter = list_display
 
 
+class CityModelAdmin(admin.ModelAdmin):
+    list_display = ('state', 'name', 'slug')
+    search_fields = list_display
+    list_filter = list_display
+    prepopulated_fields = {'slug': ('name',)}
+
+
 admin.site.register(State, StateModelAdmin)
+admin.site.register(City, CityModelAdmin)
