@@ -1,12 +1,18 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils.text import slugify
+from localflavor.br.br_states import STATE_CHOICES
 
 from desafio.utils import CommonModel
 
 
 class State(CommonModel):
-    code = models.CharField(verbose_name=_('Sigla do Estado'), max_length=2)
-    name = models.CharField(verbose_name=_('Nome do Estado'), max_length=255)
+    code = models.CharField(
+        verbose_name=_('Sigla do Estado'), max_length=2, choices=STATE_CHOICES
+    )
+    name = models.CharField(
+        verbose_name=_('Nome do Estado'), max_length=255, editable=False
+    )
 
     class Meta:
         verbose_name = _('Estado')
@@ -22,10 +28,14 @@ class State(CommonModel):
     def __str__(self) -> str:
         return self.code
 
+    def save(self):
+        self.name = self.get_code_display()
+        return super().save()
+
 
 class City(CommonModel):
     state = models.ForeignKey(
-        'State', on_delete=models.CASCADE, verbose_name=_('Cidade')
+        'State', on_delete=models.CASCADE, verbose_name=_('Estado')
     )
     name = models.CharField(verbose_name=_('Nome da Cidade'), max_length=255)
     slug = models.SlugField(verbose_name=_('Slug Cidade'), default='')
@@ -43,3 +53,7 @@ class City(CommonModel):
 
     def __str__(self) -> str:
         return self.name
+
+    def save(self):
+        self.slug = slugify(self.name)
+        return super().save()
