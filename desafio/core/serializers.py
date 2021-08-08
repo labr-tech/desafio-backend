@@ -8,6 +8,7 @@ from .models import State, City
 
 
 class StateSerializer(serializers.ModelSerializer):
+    name = serializers.ReadOnlyField()
 
     class Meta:
         model = State
