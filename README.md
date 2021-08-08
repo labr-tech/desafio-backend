@@ -5,6 +5,7 @@ cd /projeto
 pipenv shell
 pipenv install
 Renomear .env.example para .env e preencher a SECRET_KEY
+pipenv run python manage.py migrate
 pipenv run python manage.py createsuperuser
 pipenv run python manage.py runserver
 pipenv run python manage.py test
