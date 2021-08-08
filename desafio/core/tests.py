@@ -43,8 +43,8 @@ class StateTest(TestCase):
         response = self.client.post(
             '/api/v1/core/state/',
             data={
-                'code': 'PE',
-                'name': 'Pernambuco'
+                'code': 'TO',
+                'name': 'Tocantins'
             }
         )
         self.assertEqual(response.status_code, 201)
@@ -87,8 +87,8 @@ class CityTest(TestCase):
             '/api/v1/core/city/',
             data={
                 'state': self.state,
-                'name': 'Recife',
-                'slug': 'recife'
+                'name': 'Olinda',
+                'slug': 'olinda'
             }
         )
         self.assertEqual(response.status_code, 201)
