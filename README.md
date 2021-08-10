@@ -6,12 +6,12 @@ Este desafio deve ser feito por você em sua casa. Gaste o tempo que você quise
 ## Instruções de entrega do desafio
 1. Primeiro, faça um fork deste projeto para sua conta no Github (crie uma se você não possuir).
 1. Em seguida, implemente o projeto tal qual descrito abaixo, em seu próprio fork.
-1. Por fim, empurre todas as suas alterações para o seu fork no Github e envie um pull request para este repositório original. Se você já entrou em contato com alguém da Garage Geek sobre uma vaga, avise também essa pessoa por email, incluindo no email o seu usuário no Github.
+1. Por fim, empurre todas as suas alterações para o seu fork no Github e envie um pull request para este repositório original. Se você já entrou em contato com alguém da Labr Dev sobre uma vaga, avise também essa pessoa por email, incluindo no email o seu usuário no Github.
 
 ## Instruções alternativas de entrega do desafio (caso você não queira que sua submissão seja pública)
 1. Faça um clone deste repositório.
 1. Em seguida, implemente o projeto tal qual descrito abaixo, em seu clone local.
-1. Por fim, envie via email um arquivo patch para seu contato na Garage Geek.
+1. Por fim, envie via email um arquivo patch para seu contato na Labr Dev.
 
 ## Descrição do projeto
 
