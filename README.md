@@ -1,3 +1,22 @@
+## Executando a Solução
+```
+git clone https://github.com/talvane/desafio-backend
+cd /projeto
+pipenv shell
+pipenv install
+Renomear .env.example para .env e preencher a SECRET_KEY
+pipenv run python manage.py migrate
+pipenv run python manage.py createsuperuser
+pipenv run python manage.py runserver
+pipenv run python manage.py test
+```
+
+## Acessando os Dados
+- Admin -> http://127.0.0.1:8000/admin
+- Testes via Swagger API -> http://127.0.0.1:8000/api/v1/swagger/
+
+
+
 # Desafio backend
 A idéia deste desafio é nos permitir avaliar melhor as habilidades de candidatos à vagas de desenvolvedor, de vários níveis.
 
